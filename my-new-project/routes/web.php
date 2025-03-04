@@ -5,16 +5,16 @@ use Illuminate\Support\Facades\View;
 use App\Http\Controllers\GreetController;
 use App\Http\Controllers\TaskController;
 
-// hello
+// home route
 Route::get('/', function () {
-    return 'Hello, Laravel!';
+    return view('home'); // Use the Blade view here
 });
 
 // second route
 Route::get('/greet', [GreetController::class, 'showGreeting']);
 Route::resource('tasks', TaskController::class);
 
-// app
+// app route
 Route::get('/app', function () {
     return view('app');
 });
