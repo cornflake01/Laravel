@@ -11,57 +11,56 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return response()->json($tasks);
+        return view('tasks.index', compact('tasks'));
     }
 
-    // Show the form for creating a new task (Optional for API)
+    // Show the form for creating a new task
     public function create()
     {
         return view('tasks.create');
     }
 
-    // Store a newly created task
+    // Store a new task
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'is_completed' => 'boolean',
         ]);
 
-        $task = Task::create($request->all());
-        return response()->json($task, 201);
+        Task::create($validated);
+        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 
-    // Display the specified task
+    // Display a specific task
     public function show(Task $task)
     {
-        return response()->json($task);
+        return view('tasks.show', compact('task'));
     }
 
-    // Show the form for editing the specified task (Optional for API)
+    // Show the form for editing a task
     public function edit(Task $task)
     {
         return view('tasks.edit', compact('task'));
     }
 
-    // Update the specified task
+    // Update a specific task
     public function update(Request $request, Task $task)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'is_completed' => 'boolean',
         ]);
 
-        $task->update($request->all());
-        return response()->json($task);
+        $task->update($validated);
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
     }
 
-    // Remove the specified task
+    // Delete a specific task
     public function destroy(Task $task)
     {
         $task->delete();
-        return response()->json(null, 204);
+        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
     }
 }
