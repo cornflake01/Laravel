@@ -1,19 +1,35 @@
-@extends('layouts.app')
+@extends('layouts.app') {{-- Extends the main layout --}}
+
+@section('title', 'Admin Dashboard')
 
 @section('content')
-<div class="flex h-screen bg-gray-100">
-    <div class="w-64 bg-blue-900 text-white p-5 flex flex-col space-y-4">
-        <h2 class="text-2xl font-semibold">Admin Dashboard</h2>
-        <nav class="flex flex-col space-y-2">
-            <a href="{{ route('dashboard.students') }}" class="bg-blue-700 hover:bg-blue-600 p-3 rounded">Student Information</a>
-            <a href="{{ route('dashboard.announcements') }}" class="bg-blue-700 hover:bg-blue-600 p-3 rounded">School Announcements</a>
-            <a href="{{ route('dashboard.calendar') }}" class="bg-blue-700 hover:bg-blue-600 p-3 rounded">School Calendar</a>
-        </nav>
-    </div>
+    <div class="side-menu">
+        <div class="school-info">
 
-    <div class="flex-1 p-10">
-        <h1 class="text-3xl font-bold text-gray-800">Welcome to the Admin Dashboard</h1>
-        <p class="mt-2 text-gray-600">Use the sidebar to navigate through different sections.</p>
+            <h1>Student Portal</h1>
+        </div>
+        <ul>
+            <li>
+                <a href="{{ url('/addstudent') }}"><i class="fas fa-user-plus"></i> Add New Students</a>
+            </li>
+            <li>
+                <a href="{{ url('/studentinfo') }}"><i class="fas fa-id-card"></i> Student Information</a>
+            </li>
+            <li>
+                <a href="{{ url('/uploadgrades') }}"><i class="fas fa-file-upload"></i> Grades Upload</a>
+            </li>
+            <li>
+                <a href="{{ url('/addannouncement') }}"><i class="fas fa-bullhorn"></i> Create Announcement</a>
+            </li>
+            <li>
+                <a href="{{ url('/events') }}"><i class="fas fa-calendar-alt"></i> School Events</a>
+            </li>
+            <li>
+                <a href="{{ url('/feedbacks') }}"><i class="fas fa-comments"></i> View Feedback</a>
+            </li>
+            <li>
+                <a href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+        </ul>
     </div>
-</div>
 @endsection

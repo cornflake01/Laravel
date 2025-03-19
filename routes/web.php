@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\AdminController;
 
 // Define dashboard route
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
